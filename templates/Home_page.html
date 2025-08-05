@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5c5c7;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .left {
+            flex: 1;
+            color: black;
+        }
+
+        .left h1 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .left h2 {
+            font-size: 30px;
+            margin-top: 5px;
+        }
+
+        .left .service-box {
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 8px 15px;
+            width: fit-content;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .left ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .left li {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .left li::before {
+            content: "✔️";
+            margin-right: 10px;
+            color: green;
+        }
+
+        .right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right img {
+            width: 425px;
+            height: auto;
+            border-radius: 23%;
+        }
+
+        .footer {
+            background-color: #77d504;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* ✅ FIXED: Correct use of media query for responsiveness */
+        @media (max-width: 768px) {
+            .top {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left, .right {
+                text-align: center;
+            }
+
+            .right img {
+                width: 80%;
+                border-radius: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top">
+            <div class="left">
+                <h1>Home Page</h1>
+                <h2>Services</h2>
+                <div class="service-box">Our Services:</div>
+                <ul>
+                    <li>STEM Subjects</li>
+                    <li>Robotics and Programming</li>
+                    <li>Calligraphy</li>
+                    <li>VCE/NAPLAN/SCHOLARSHIP</li>
+                </ul>
+            </div>
+            <div class="right">
+                <img src="system logo.jpg" alt="System Logo">
+            </div>
+        </div>
+
+        <div class="footer">
+            <button>BOOK NOW</button>
+            <a href="#">www.sySTEM@TECH Learning Management System.com.au</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sySTEM@TECH Weekly Schedule</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f8ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      color: #ffcc00;
+      font-weight: bold;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .info-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 30px;
+      font-weight: bold;
+    }
+
+    .schedule {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .day {
+      background-color: white;
+      border: 2px solid #aaa;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .day-header {
+      background-color: #d8c6ff;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .day-content {
+      margin-bottom: 10px;
+    }
+
+    .day img {
+      width: 90px;
+      margin: 10px 0;
+    }
+
+    .time {
+      background-color: #eee;
+      padding: 5px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .footer img {
+      width: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    sySTEM@TECH Learning Management System Weekly Schedule
+  </div>
+
+  <div class="info-bar">
+    <div>Month: __________</div>
+    <div>Week: __________</div>
+  </div>
+
+  <div class="schedule">
+
+    <div class="day">
+      <div class="day-header">Monday</div>
+      <div class="day-content">VCE Physics at Williams Landing</div>
+      <img src="system logo.jpg" alt="Logo">
+      <div class="time">Time: 11:00 - 1:00</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">Tuesday</div>
+      <div class="day-content">Robotics and Programming at Derrimut</div>
+      <img src="system logo.jpg" alt="Logo">
+      <div class="time">Time: 2:00 - 4:00</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">Wednesday</div>
+      <div class="day-content">Methods online class</div>
+      <img src="system logo.jpg" alt="Logo">
+      <div class="time">Time: 10:00 - 12:00</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">Thursday</div>
+      <div class="day-content">Calligraphy class</div>
+      <img src="system logo.jpg" alt="Logo">
+      <div class="time">Time: 4:00 - 6:00</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">Friday</div>
+      <div class="day-content">NAPLAN Literacy</div>
+      <img src="system logo.jpg" alt="Logo">
+      <div class="time">Time: 6:00 - 8:00</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <img src="zoom_icon.png" alt="Zoom Icon">
+  </div>
+
+</body>
+</html>

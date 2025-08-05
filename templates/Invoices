@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #fff;
+    }
+
+    .invoice-container {
+      width: 800px;
+      margin: auto;
+      border: 1px solid #ddd;
+      padding: 40px;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      width: 60px;
+    }
+
+    .top-left {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .bottom-left {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .bottom-right {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .invoice-title {
+      text-align: right;
+      margin-top: 40px;
+    }
+
+    .invoice-title p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .invoice-title h1 {
+      margin: 5px 0 20px;
+      font-size: 36px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+
+    .invoice-to, .company-info {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    .invoice-table th {
+      background-color: #2d6a4f;
+      color: white;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .invoice-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .totals {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .subtotal p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .subtotal span {
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 80px; /* shifted higher */
+      margin-bottom: 60px; /* extra bottom margin to avoid overlap */
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <img src="system logo.jpg" class="logo top-left" alt="Logo">
+    <img src="system logo.jpg" class="logo top-right" alt="Logo">
+
+    <div class="invoice-title">
+      <p><strong>NO.</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>DUE</strong></p>
+      <h1>INVOICE</h1>
+    </div>
+
+    <div class="info">
+      <div class="invoice-to">
+        <strong>INVOICE TO</strong>
+      </div>
+      <div class="company-info">
+        <strong>COMPANY:</strong><br />
+        sySTEM@TECH Learning<br />
+        Management System
+      </div>
+    </div>
+
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tutoring services</td>
+          <td>$</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="subtotal">
+        <p>Subtotal <span>$</span></p>
+        <p>Tax(10%) <span>$</span></p>
+        <p><strong>TOTAL</strong> <span>$</span></p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>PAYMENT METHOD</div>
+      <div>Date</div>
+    </div>
+
+    <img src="system logo.jpg" class="logo bottom-left" alt="Logo">
+    <img src="system logo.jpg" class="logo bottom-right" alt="Logo">
+  </div>
+</body>
+</html>

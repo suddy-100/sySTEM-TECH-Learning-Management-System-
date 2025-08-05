@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Locations</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ff3c3c;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      text-shadow: 0px 4px 4px rgba(0,0,0,0.2);
+    }
+
+    .card {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+
+    .card .text {
+      text-align: left;
+    }
+
+    .card .text h2 {
+      font-size: 20px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .card .text p {
+      font-size: 16px;
+      margin: 5px 0 0 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Our Locations</h1>
+
+    <div class="card">
+      <img src="campus1.jpg" alt="Campus 01">
+      <div class="text">
+        <h2>Campus 01</h2>
+        <p>Derrimut</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="campus2.jpg" alt="Campus 02">
+      <div class="text">
+        <h2>Campus 02</h2>
+        <p>Williams Landing</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="campus3.jpg" alt="Campus 03">
+      <div class="text">
+        <h2>Campus 03</h2>
+        <p>Online</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
