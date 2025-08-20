@@ -117,12 +117,26 @@
       margin-bottom: 60px; /* extra bottom margin to avoid overlap */
       font-size: 14px;
     }
+
+    .image-row {
+    display: flex;
+    justify-content: space-between; /* pushes images to left and right */
+    align-items: center;
+    margin: 20px 0;
+}
+
+.image-row img {
+    width: 150px; /* adjust as needed */
+    height: auto;
+}
   </style>
 </head>
 <body>
   <div class="invoice-container">
-    <img src="system logo.jpg" class="logo top-left" alt="Logo">
-    <img src="system logo.jpg" class="logo top-right" alt="Logo">
+    <div class="image-row">
+    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Left Logo">
+    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Right Logo">
+</div>
 
     <div class="invoice-title">
       <p><strong>NO.</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>DUE</strong></p>
@@ -168,8 +182,11 @@
       <div>Date</div>
     </div>
 
-    <img src="system logo.jpg" class="logo bottom-left" alt="Logo">
-    <img src="system logo.jpg" class="logo bottom-right" alt="Logo">
+    <div class="image-row">
+    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Left Logo">
+    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Right Logo">
+</div>
+
   </div>
 </body>
 </html>

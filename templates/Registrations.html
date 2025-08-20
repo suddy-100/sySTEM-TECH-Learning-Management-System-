@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+
+    /* HEADER */
+    header {
+      background: yellow;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #000;
+      position: relative;
+    }
+
+    /* Green bar below header */
+    .green-bar {
+      background: #00b050;
+      height: 40px;
+    }
+
+    /* Title */
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 22px;
+    }
+
+    form {
+      width: 80%;
+      margin: auto;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    label {
+      display: inline-block;
+      width: 180px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 5px;
+      width: 250px;
+    }
+
+    .gender label {
+      width: auto;
+      margin-right: 15px;
+    }
+
+    .logo {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    /* Book Now Button */
+    .submit-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      background: #00b050;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* FOOTER bar (blue and red stripes) */
+    footer {
+      height: 20px;
+      display: flex;
+    }
+    .blue-bar {
+      background: #0070c0;
+      flex: 1;
+    }
+    .red-bar {
+      background: #c00000;
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    SYSTEM@TECH LEARNING MANAGEMENT SYSTEM
+  </header>
+  <div class="green-bar"></div>
+
+  <!-- Page Title -->
+  <h2>Registrations</h2>
+
+  <!-- FORM -->
+  <form method="POST">
+    <!-- CONTACT DETAILS -->
+    <div class="section">
+      <h3>CONTACT DETAILS</h3>
+      <label>Full Name :</label>
+      <input type="text" name="fullname"><br>
+
+      <label>Date of Birth :</label>
+      <input type="text" name="dob_day" placeholder="DD" size="2"> /
+      <input type="text" name="dob_month" placeholder="MM" size="2"> /
+      <input type="text" name="dob_year" placeholder="YYYY" size="4"><br>
+
+      <label>Email :</label>
+      <input type="email" name="email"><br>
+
+      <label>Gender :</label>
+      <div class="gender">
+        <label><input type="radio" name="gender" value="Male"> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+      </div>
+    </div>
+
+    <!-- SUBJECT PREFERENCE -->
+    <div class="section">
+      <h3>SUBJECT PREFERENCE</h3>
+      <label>STEM:</label>
+      <input type="text" name="stem"><br>
+
+      <label>Robotics and Programming:</label>
+      <input type="text" name="robotics"><br>
+
+      <label>Calligraphy:</label>
+      <input type="text" name="calligraphy"><br>
+
+      <label>NAPLAN/VCE/Scholarship:</label>
+      <input type="text" name="scholarship"><br>
+    </div>
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
+    </div>
+
+    <!-- LOCATION PREFERENCE -->
+    <div class="section">
+      <h3>LOCATION PREFERENCE</h3>
+      <label>Derrimut:</label>
+      <input type="text" name="derrimut"><br>
+
+      <label>Williams Landing:</label>
+      <input type="text" name="williams"><br>
+
+      <label>Online:</label>
+      <input type="text" name="online"><br>
+    </div>
+
+    <!-- SUBMIT -->
+    <button type="submit" class="submit-btn">Book Now</button>
+  </form>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="blue-bar"></div>
+    <div class="red-bar"></div>
+  </footer>
+
+</body>
+</html>

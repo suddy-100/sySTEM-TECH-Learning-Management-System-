@@ -13,12 +13,13 @@
             height: 100vh;
         }
 
-       .left {
+        .left {
             flex: 1;
             background-color: white;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .left img {
@@ -29,6 +30,7 @@
         .left p {
             color: #00456b;
             font-size: 1.2rem;
+            text-align: center;
         }
 
         .right {
@@ -79,7 +81,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #00324e;
+            background-color: #00253a;
         }
 
         a {
@@ -91,19 +93,27 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .links {
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- Left Section -->
         <div class="left">
-            <img src="system logo.jpg" alt="system Logo">
+            <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
+            <p>Welcome to the sySTEM@TECH Learning Management System</p>
         </div>
 
-       
+        <!-- Right Section -->
         <div class="right">
-            <h2>Welcome to the sySTEM@TECH Learning Management System</h2>
-            <p>Don't have an account yet? <a href="#">Create an account</a></p>
+            <h2>Login</h2>
+            <p>Don't have an account yet? <a href="{{ url_for('create_account') }}">Create an account</a></p>
+
+            <!-- Login Form -->
             <form method="POST" action="{{ url_for('login') }}">
                 <label for="username">Username</label><br>
                 <input type="text" id="username" name="username" required><br>
@@ -112,11 +122,15 @@
                 <input type="password" id="password" name="password" required><br>
 
                 <div class="checkbox">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Keep me logged in</label>
+                    <input type="checkbox" id="keep_logged_in" name="keep_logged_in">
+                    <label for="keep_logged_in">Keep me logged in</label>
                 </div>
 
-                <a href="#">Forgot Password?</a><br><br>
+                <div class="links">
+                    <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+                </div>
+
+                <br>
                 <input type="submit" value="Login">
             </form>
         </div>

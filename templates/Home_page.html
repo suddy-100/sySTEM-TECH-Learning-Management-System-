@@ -142,12 +142,13 @@
                 </ul>
             </div>
             <div class="right">
-                <img src="system logo.jpg" alt="System Logo">
+                <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
             </div>
         </div>
 
         <div class="footer">
-            <button>BOOK NOW</button>
+        <a href="{{ url_for('register') }}" class="book-now">BOOK NOW</a>
+
             <a href="#">www.sySTEM@TECH Learning Management System.com.au</a>
         </div>
     </div>
