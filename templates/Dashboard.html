@@ -102,6 +102,19 @@
     </style>
 </head>
 <body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div>
+          {% for category, message in messages %}
+            <p style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+              {{ message }}
+            </p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <!-- Top white header with two logos -->
     <div class="header">
         <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo" style="width:150px; height:auto;">
@@ -134,33 +147,33 @@
                     <div class="card homework">
                         <h3>Homework</h3>
                         <label>Current assigned homework:</label>
-                        <input type="text" name="homework_assigned">
+                        <input type="text" name="homework_assigned" value="{{ dashboard_data.homework_assigned }}">
                         <label>Current submissions:</label>
-                        <input type="text" name="homework_submitted">
+                        <input type="text" name="homework_submitted" value="{{ dashboard_data.homework_submitted }}">
                     </div>
 
                     <div class="card attendance">
                         <h3>Attendance</h3>
                         <label>Number of students:</label>
-                        <input type="text" name="attendance_students">
+                        <input type="text" name="attendance_students" value="{{ dashboard_data.attendance_students }}">
                         <label>Tutor:</label>
-                        <input type="text" name="attendance_tutor">
+                        <input type="text" name="attendance_tutor" value="{{ dashboard_data.attendance_tutor }}">
                     </div>
 
                     <div class="card registrations">
                         <h3>Current registrations</h3>
                         <label>Tutors:</label>
-                        <input type="text" name="registered_tutors">
+                        <input type="text" name="registered_tutors" value="{{ dashboard_data.registered_tutors }}">
                         <label>Students:</label>
-                        <input type="text" name="registered_students">
+                        <input type="text" name="registered_students" value="{{ dashboard_data.registered_students }}">
                     </div>
 
                     <div class="card dropouts">
                         <h3>Dropouts</h3>
                         <label>Tutor dropouts in the last month:</label>
-                        <input type="text" name="dropout_tutors">
+                        <input type="text" name="dropout_tutors" value="{{ dashboard_data.dropout_tutors }}">
                         <label>Student dropouts in the last month:</label>
-                        <input type="text" name="dropout_students">
+                        <input type="text" name="dropout_students" value="{{ dashboard_data.dropout_students }}">
                     </div>
                 </div>
                 <!-- hidden submit button -->

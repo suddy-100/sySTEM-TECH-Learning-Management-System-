@@ -19,12 +19,29 @@
     footer { height: 20px; display: flex; }
     .blue-bar { background: #0070c0; flex: 1; }
     .red-bar { background: #c00000; flex: 1; }
+
+    /* Flash message styles */
+    .flash-messages { width: 80%; margin: 20px auto; text-align: center; }
+    .flash-messages p { font-weight: bold; font-size: 14px; margin: 5px 0; }
   </style>
 </head>
 <body>
   <header>SYSTEM@TECH LEARNING MANAGEMENT SYSTEM</header>
   <div class="green-bar"></div>
   <h2>Registrations</h2>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <p style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+            {{ message }}
+          </p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
 
   <form method="POST" id="registrationForm">
     <!-- ROLE -->
@@ -41,7 +58,7 @@
     <!-- CONTACT DETAILS -->
     <div class="section">
       <h3>CONTACT DETAILS</h3>
-      <label>Full Name :</label>
+      <label>Preferred Name :</label>
       <input type="text" name="fullname" required><br>
 
       <label>Date of Birth :</label>
@@ -70,10 +87,6 @@
       </div>
     </div>
 
-    <div class="logo">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-    </div>
-
     <!-- LOCATION PREFERENCE -->
     <div class="section">
       <h3>LOCATION PREFERENCE</h3>
@@ -82,6 +95,11 @@
         <label><input type="checkbox" name="location" value="Williams Landing"> Williams Landing</label>
         <label><input type="checkbox" name="location" value="Online"> Online</label>
       </div>
+    </div>
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
     </div>
 
     <button type="submit" class="submit-btn">Book Now</button>

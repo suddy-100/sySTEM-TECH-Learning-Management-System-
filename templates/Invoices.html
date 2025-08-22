@@ -28,7 +28,7 @@
     }
 
     .image-row img {
-      width: 120px; /* smaller logo */
+      width: 120px;
       height: auto;
     }
 
@@ -129,6 +129,19 @@
   </style>
 </head>
 <body>
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div>
+        {% for category, message in messages %}
+          <p style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+            {{ message }}
+          </p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
   <div class="header" style="text-align:center; font-size:24px; font-weight:bold; margin-bottom:20px; color:#ffcc00;">
     sySTEM@TECH Learning Management System Invoicing
   </div>
@@ -172,12 +185,12 @@
           {% for item in invoice.invoice_items %}
           <tr>
             <td><input type="text" name="desc_{{ loop.index }}" value="{{ item.description }}"></td>
-            <td><input type="text" name="price_{{ loop.index }}" value="{{ item.price }}"></td>
+            <td><input type="text" name="price_{{ loop.index }}" value="{{ item.price | replace('$','') }}"></td>
           </tr>
           {% else %}
           <tr>
             <td><input type="text" name="desc_1" value="Tutoring services"></td>
-            <td><input type="text" name="price_1" value="$"></td>
+            <td><input type="text" name="price_1" value=""></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -185,9 +198,9 @@
 
       <div class="totals">
         <div>
-          <p>Subtotal: <input type="text" name="subtotal" value="{{ invoice.subtotal | default('$') }}"></p>
-          <p>Tax(10%): <input type="text" name="tax" value="{{ invoice.tax | default('$') }}"></p>
-          <p><strong>Total: <input type="text" name="total" value="{{ invoice.total | default('$') }}"></strong></p>
+          <p>Subtotal: <input type="text" name="subtotal" value="{{ invoice.subtotal | replace('$','') }}"></p>
+          <p>Tax(10%): <input type="text" name="tax" value="{{ invoice.tax | replace('$','') }}"></p>
+          <p><strong>Total: <input type="text" name="total" value="{{ invoice.total | replace('$','') }}"></strong></p>
         </div>
       </div>
 

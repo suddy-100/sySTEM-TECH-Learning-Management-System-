@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS dashboard (
 )
 ''')
 
-# Weekly schedule table
+# Weekly schedule table (with month and week)
 c.execute('''
 CREATE TABLE IF NOT EXISTS weekly_schedule (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,7 +64,9 @@ CREATE TABLE IF NOT EXISTS weekly_schedule (
     thursday TEXT,
     friday TEXT,
     saturday TEXT,
-    sunday TEXT
+    sunday TEXT,
+    month TEXT,   -- Can be 1-12 or Jan-Dec
+    week INTEGER  -- 1-10
 )
 ''')
 
@@ -90,4 +92,5 @@ CREATE TABLE IF NOT EXISTS invoices (
 
 conn.commit()
 conn.close()
-print("Fresh site.db created successfully with all tables!")
+print("Fresh site.db created successfully with all tables including month and week in weekly_schedule!")
+

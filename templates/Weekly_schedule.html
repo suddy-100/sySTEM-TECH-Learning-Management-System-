@@ -21,6 +21,24 @@
       border-bottom: 2px solid #ccc;
     }
 
+    .flash-message {
+      max-width: 600px;
+      margin: 15px auto;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+    }
+
+    .flash-success {
+      background-color: #28a745;
+    }
+
+    .flash-danger {
+      background-color: #dc3545;
+    }
+
     .info-bar {
       display: flex;
       justify-content: space-between;
@@ -68,6 +86,14 @@
       font-size: 14px;
       border-radius: 5px;
       border: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+
+    .day-content img {
+      width: 60px;   
+      height: auto;  
+      display: block;
+      margin: 5px 0; 
     }
 
     .footer {
@@ -75,13 +101,6 @@
       margin-top: 30px;
     }
       
-    .day-content img {
-      width: 60px;   /* change this value to make it smaller or bigger */
-      height: auto;  /* keeps aspect ratio */
-      display: block;
-      margin: 5px 0; /* optional spacing */
-    }
-
     .footer img {
       width: 20px;
     }
@@ -103,6 +122,12 @@
     .save-btn button:hover {
       background-color: #e6b800;
     }
+
+    .time {
+      font-size: 12px;
+      color: #555;
+      margin-top: 2px;
+    }
   </style>
 </head>
 <body>
@@ -111,77 +136,48 @@
     sySTEM@TECH Learning Management System Weekly Schedule
   </div>
 
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
   <form method="POST" action="{{ url_for('weekly_schedule') }}">
     <div class="info-bar">
-      <div>Month: <input type="text" name="month" value="{{ schedule_data.month }}"></div>
-      <div>Week: <input type="text" name="week" value="{{ schedule_data.week }}"></div>
+      <div>
+        Month: 
+        <input type="text" name="month" value="{{ schedule_data.month }}" 
+               placeholder="1-12 or Jan-Dec" required
+               pattern="^([1-9]|1[0-2]|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)$">
+      </div>
+      <div>
+        Week: 
+        <input type="number" name="week" value="{{ schedule_data.week }}" 
+               placeholder="1-10" required min="1" max="10">
+      </div>
     </div>
 
     <div class="schedule">
-  <div class="day">
-    <div class="day-header">Monday</div>
-    <div class="day-content">
-      <input type="text" name="monday" value="{{ schedule_data.monday | default('VCE Physics at Williams Landing') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: 11:00 - 1:00</div>
+      {% for day, default_value in [('monday','VCE Physics at Williams Landing'),
+                                   ('tuesday','Robotics and Programming at Derrimut'),
+                                   ('wednesday','Methods online class'),
+                                   ('thursday','Calligraphy class'),
+                                   ('friday','NAPLAN Literacy'),
+                                   ('saturday',''),
+                                   ('sunday','')] %}
+      <div class="day">
+        <div class="day-header">{{ day|capitalize }}</div>
+        <div class="day-content">
+          <input type="text" name="{{ day }}" value="{{ schedule_data[day]|default(default_value) }}">
+          <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
+          <div class="time">Time: --</div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-  </div>
-
-  <div class="day">
-    <div class="day-header">Tuesday</div>
-    <div class="day-content">
-      <input type="text" name="tuesday" value="{{ schedule_data.tuesday | default('Robotics and Programming at Derrimut') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: 2:00 - 4:00</div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-header">Wednesday</div>
-    <div class="day-content">
-      <input type="text" name="wednesday" value="{{ schedule_data.wednesday | default('Methods online class') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: 10:00 - 12:00</div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-header">Thursday</div>
-    <div class="day-content">
-      <input type="text" name="thursday" value="{{ schedule_data.thursday | default('Calligraphy class') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: 4:00 - 6:00</div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-header">Friday</div>
-    <div class="day-content">
-      <input type="text" name="friday" value="{{ schedule_data.friday | default('NAPLAN Literacy') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: 6:00 - 8:00</div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-header">Saturday</div>
-    <div class="day-content">
-      <input type="text" name="saturday" value="{{ schedule_data.saturday | default('') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: --</div>
-    </div>
-  </div>
-
-  <div class="day">
-    <div class="day-header">Sunday</div>
-    <div class="day-content">
-      <input type="text" name="sunday" value="{{ schedule_data.sunday | default('') }}">
-      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
-      <div class="time">Time: --</div>
-    </div>
-  </div>
-</div>
-
 
     <div class="save-btn">
       <button type="submit">Save Schedule</button>
@@ -193,7 +189,11 @@
   </div>
 
   <div style="text-align:center; margin: 20px;">
-    <a href="{{ url_for('invoices') }}" style="font-weight:bold; font-size:16px; color:#00324e;">Go to Invoicing Page</a>
+    <a href="{{ url_for('invoices') }}" 
+       onclick="if(!document.querySelector('input[name=month]').value || !document.querySelector('input[name=week]').value){ alert('You need to enter month and week correctly!'); return false; }"
+       style="font-weight:bold; font-size:16px; color:#00324e;">
+       Go to Invoicing Page
+    </a>
   </div>
 
 </body>

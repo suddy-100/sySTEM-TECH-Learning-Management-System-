@@ -77,6 +77,11 @@
         input[type="submit"]:hover {
             background-color: #f2f2f2;
         }
+
+        .flash-message {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +91,17 @@
         </div>
         <div class="right">
             <h2>Create Account</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="flash-message" style="color: {% if category == 'error' %}red{% else %}yellow{% endif %};">
+                      {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
             <form method="POST" action="{{ url_for('create_account') }}">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" required><br>
@@ -95,7 +111,7 @@
 
                 <div class="checkbox">
                     <input type="checkbox" id="remember" name="remember" value="yes">
-                    <label for="remember">Remember my details</label>
+                    <label for="remember">Remember my details (save account)</label>
                 </div>
 
                 <input type="submit" value="Create Account">
