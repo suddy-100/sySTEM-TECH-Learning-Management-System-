@@ -57,6 +57,24 @@
       margin: 5px 0 0 0;
       color: #555;
     }
+
+    .card .text .description {
+      font-size: 14px;
+      margin: 5px 0 0 0;
+      color: #333;
+    }
+
+    .links {
+      margin-top: 30px;
+    }
+
+    .links a {
+      display: block;
+      color: white;
+      font-size: 18px;
+      text-decoration: underline;
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -64,34 +82,36 @@
     <h1>Our Locations</h1>
 
     <div class="card">
-      <img src="campus1.jpg" alt="Campus 01">
+      <img src="{{ url_for('static', filename='derrimut.webp') }}" alt="Logo">
       <div class="text">
         <h2>Campus 01</h2>
         <p>Derrimut</p>
+        <div class="description">Our main campus offering in-person classes, hands-on workshops, and access to modern labs and resources.</div>
       </div>
     </div>
 
     <div class="card">
-      <img src="campus2.jpg" alt="Campus 02">
+      <img src="{{ url_for('static', filename='williams landing.webp') }}" alt="Logo">
       <div class="text">
         <h2>Campus 02</h2>
         <p>Williams Landing</p>
+        <div class="description">A community-focused campus providing flexible learning programs, collaborative spaces, and student support services.</div>
       </div>
     </div>
 
     <div class="card">
-      <img src="campus3.jpg" alt="Campus 03">
+      <img src="{{ url_for('static', filename='online.webp') }}" alt="Logo">
       <div class="text">
         <h2>Campus 03</h2>
         <p>Online</p>
+        <div class="description">Virtual classes and digital resources for remote learners, allowing study from anywhere with interactive lessons.</div>
       </div>
     </div>
-        <p style="margin-top: 30px;">
-      <a href="{{ url_for('weekly_schedule') }}" 
-         style="color: white; font-size: 18px; text-decoration: underline;">
-         View Weekly Schedule
-      </a>
-    </p>
+
+    <div class="links">
+      <a href="{{ url_for('register') }}">Register Now</a>
+    </div>
   </div>
 </body>
 </html>
+

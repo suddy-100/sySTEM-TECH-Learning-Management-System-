@@ -17,46 +17,35 @@
       margin: auto;
       border: 1px solid #ddd;
       padding: 40px;
-      position: relative;
       box-sizing: border-box;
     }
 
-    .logo {
-      width: 60px;
+    .image-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
     }
 
-    .top-left {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-
-    .bottom-left {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-    }
-
-    .bottom-right {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
+    .image-row img {
+      width: 120px; /* smaller logo */
+      height: auto;
     }
 
     .invoice-title {
       text-align: right;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .invoice-title p {
       margin: 0;
       font-size: 14px;
+    }
+
+    .invoice-title input {
+      width: 80px;
+      font-size: 14px;
+      text-align: center;
     }
 
     .invoice-title h1 {
@@ -67,19 +56,20 @@
     .info {
       display: flex;
       justify-content: space-between;
-      margin-top: 60px;
-      margin-bottom: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
-    .invoice-to, .company-info {
+    .info input {
       font-size: 14px;
-      line-height: 1.5;
+      width: 200px;
+      padding: 4px;
     }
 
     .invoice-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .invoice-table th {
@@ -89,9 +79,12 @@
       text-align: left;
     }
 
-    .invoice-table td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #ccc;
+    .invoice-table td input {
+      width: 100%;
+      padding: 4px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
     .totals {
@@ -99,94 +92,119 @@
       justify-content: flex-end;
     }
 
-    .subtotal p {
+    .totals p {
       margin: 4px 0;
       font-size: 14px;
     }
 
-    .subtotal span {
-      display: inline-block;
-      width: 100px;
+    .totals input {
+      width: 80px;
       text-align: right;
     }
 
     .footer {
       display: flex;
       justify-content: space-between;
-      margin-top: 80px; /* shifted higher */
-      margin-bottom: 60px; /* extra bottom margin to avoid overlap */
+      margin-top: 40px;
       font-size: 14px;
     }
 
-    .image-row {
-    display: flex;
-    justify-content: space-between; /* pushes images to left and right */
-    align-items: center;
-    margin: 20px 0;
-}
+    .save-btn {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-.image-row img {
-    width: 150px; /* adjust as needed */
-    height: auto;
-}
+    .save-btn button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .save-btn button:hover {
+      background-color: #e6b800;
+    }
   </style>
 </head>
 <body>
-  <div class="invoice-container">
-    <div class="image-row">
-    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Left Logo">
-    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Right Logo">
-</div>
-
-    <div class="invoice-title">
-      <p><strong>NO.</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>DUE</strong></p>
-      <h1>INVOICE</h1>
-    </div>
-
-    <div class="info">
-      <div class="invoice-to">
-        <strong>INVOICE TO</strong>
-      </div>
-      <div class="company-info">
-        <strong>COMPANY:</strong><br />
-        sySTEM@TECH Learning<br />
-        Management System
-      </div>
-    </div>
-
-    <table class="invoice-table">
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tutoring services</td>
-          <td>$</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="totals">
-      <div class="subtotal">
-        <p>Subtotal <span>$</span></p>
-        <p>Tax(10%) <span>$</span></p>
-        <p><strong>TOTAL</strong> <span>$</span></p>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div>PAYMENT METHOD</div>
-      <div>Date</div>
-    </div>
-
-    <div class="image-row">
-    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Left Logo">
-    <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Right Logo">
-</div>
-
+  <div class="header" style="text-align:center; font-size:24px; font-weight:bold; margin-bottom:20px; color:#ffcc00;">
+    sySTEM@TECH Learning Management System Invoicing
   </div>
+
+  <form method="POST" action="{{ url_for('invoices') }}">
+    <div class="invoice-container">
+      <div class="image-row">
+        <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Left Logo">
+        <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Right Logo">
+      </div>
+
+      <div class="invoice-title">
+        <p>
+          NO. <input type="text" name="invoice_no" value="{{ invoice.invoice_no | default('001') }}">
+          DUE <input type="text" name="due_date" value="{{ invoice.due_date | default('') }}">
+        </p>
+        <h1>INVOICE</h1>
+      </div>
+
+      <div class="info">
+        <div class="invoice-to">
+          <strong>INVOICE TO:</strong><br>
+          <input type="text" name="client_name" value="{{ invoice.client_name | default('Client Name') }}"><br>
+          <input type="text" name="client_email" value="{{ invoice.client_email | default('client@example.com') }}">
+        </div>
+        <div class="company-info">
+          <strong>COMPANY:</strong><br>
+          <input type="text" name="company_name" value="{{ invoice.company_name | default('sySTEM@TECH Learning') }}"><br>
+          <input type="text" name="company_address" value="{{ invoice.company_address | default('Management System') }}">
+        </div>
+      </div>
+
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in invoice.invoice_items %}
+          <tr>
+            <td><input type="text" name="desc_{{ loop.index }}" value="{{ item.description }}"></td>
+            <td><input type="text" name="price_{{ loop.index }}" value="{{ item.price }}"></td>
+          </tr>
+          {% else %}
+          <tr>
+            <td><input type="text" name="desc_1" value="Tutoring services"></td>
+            <td><input type="text" name="price_1" value="$"></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="totals">
+        <div>
+          <p>Subtotal: <input type="text" name="subtotal" value="{{ invoice.subtotal | default('$') }}"></p>
+          <p>Tax(10%): <input type="text" name="tax" value="{{ invoice.tax | default('$') }}"></p>
+          <p><strong>Total: <input type="text" name="total" value="{{ invoice.total | default('$') }}"></strong></p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>PAYMENT METHOD: <input type="text" name="payment_method" value="{{ invoice.payment_method | default('Bank Transfer') }}"></div>
+        <div>Date: <input type="text" name="invoice_date" value="{{ invoice.invoice_date | default('') }}"></div>
+      </div>
+
+      <div class="save-btn">
+        <button type="submit">Save Invoice</button>
+      </div>
+
+      <div class="image-row">
+        <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Left Logo">
+        <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Right Logo">
+      </div>
+    </div>
+  </form>
 </body>
 </html>

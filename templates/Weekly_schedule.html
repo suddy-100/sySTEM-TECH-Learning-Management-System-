@@ -28,6 +28,14 @@
       font-weight: bold;
     }
 
+    .info-bar input {
+      width: 150px;
+      padding: 5px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
     .schedule {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -51,31 +59,49 @@
       border-radius: 6px;
       font-weight: bold;
       margin-bottom: 10px;
+      text-align: center;
     }
 
-    .day-content {
-      margin-bottom: 10px;
-    }
-
-    .day img {
-      width: 90px;
-      margin: 10px 0;
-    }
-
-    .time {
-      background-color: #eee;
+    .day-content input {
+      width: 100%;
       padding: 5px;
+      font-size: 14px;
       border-radius: 5px;
-      font-weight: bold;
+      border: 1px solid #ccc;
     }
 
     .footer {
       text-align: center;
       margin-top: 30px;
     }
+      
+    .day-content img {
+      width: 60px;   /* change this value to make it smaller or bigger */
+      height: auto;  /* keeps aspect ratio */
+      display: block;
+      margin: 5px 0; /* optional spacing */
+    }
 
     .footer img {
-      width: 50px;
+      width: 20px;
+    }
+
+    .save-btn {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .save-btn button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .save-btn button:hover {
+      background-color: #e6b800;
     }
   </style>
 </head>
@@ -85,58 +111,90 @@
     sySTEM@TECH Learning Management System Weekly Schedule
   </div>
 
-  <div class="info-bar">
-    <div>Month: __________</div>
-    <div>Week: __________</div>
-  </div>
+  <form method="POST" action="{{ url_for('weekly_schedule') }}">
+    <div class="info-bar">
+      <div>Month: <input type="text" name="month" value="{{ schedule_data.month }}"></div>
+      <div>Week: <input type="text" name="week" value="{{ schedule_data.week }}"></div>
+    </div>
 
-  <div class="schedule">
-
-    <div class="day">
-      <div class="day-header">Monday</div>
-      <div class="day-content">VCE Physics at Williams Landing</div>
+    <div class="schedule">
+  <div class="day">
+    <div class="day-header">Monday</div>
+    <div class="day-content">
+      <input type="text" name="monday" value="{{ schedule_data.monday | default('VCE Physics at Williams Landing') }}">
       <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
       <div class="time">Time: 11:00 - 1:00</div>
     </div>
+  </div>
 
-    <div class="day">
-      <div class="day-header">Tuesday</div>
-      <div class="day-content">Robotics and Programming at Derrimut</div>
+  <div class="day">
+    <div class="day-header">Tuesday</div>
+    <div class="day-content">
+      <input type="text" name="tuesday" value="{{ schedule_data.tuesday | default('Robotics and Programming at Derrimut') }}">
       <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
       <div class="time">Time: 2:00 - 4:00</div>
     </div>
+  </div>
 
-    <div class="day">
-      <div class="day-header">Wednesday</div>
-      <div class="day-content">Methods online class</div>
+  <div class="day">
+    <div class="day-header">Wednesday</div>
+    <div class="day-content">
+      <input type="text" name="wednesday" value="{{ schedule_data.wednesday | default('Methods online class') }}">
       <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
       <div class="time">Time: 10:00 - 12:00</div>
     </div>
+  </div>
 
-    <div class="day">
-      <div class="day-header">Thursday</div>
-      <div class="day-content">Calligraphy class</div>
+  <div class="day">
+    <div class="day-header">Thursday</div>
+    <div class="day-content">
+      <input type="text" name="thursday" value="{{ schedule_data.thursday | default('Calligraphy class') }}">
       <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
       <div class="time">Time: 4:00 - 6:00</div>
     </div>
+  </div>
 
-    <div class="day">
-      <div class="day-header">Friday</div>
-      <div class="day-content">NAPLAN Literacy</div>
+  <div class="day">
+    <div class="day-header">Friday</div>
+    <div class="day-content">
+      <input type="text" name="friday" value="{{ schedule_data.friday | default('NAPLAN Literacy') }}">
       <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
       <div class="time">Time: 6:00 - 8:00</div>
     </div>
-
   </div>
 
+  <div class="day">
+    <div class="day-header">Saturday</div>
+    <div class="day-content">
+      <input type="text" name="saturday" value="{{ schedule_data.saturday | default('') }}">
+      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
+      <div class="time">Time: --</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-header">Sunday</div>
+    <div class="day-content">
+      <input type="text" name="sunday" value="{{ schedule_data.sunday | default('') }}">
+      <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo">
+      <div class="time">Time: --</div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="save-btn">
+      <button type="submit">Save Schedule</button>
+    </div>
+  </form>
+
   <div class="footer">
-    <img src="zoom_icon.png" alt="Zoom Icon">
-</div>
+    <img src="{{ url_for('static', filename='zoom.png') }}" alt="Logo"> 
+  </div>
 
-<div style="text-align:center; margin: 20px;">
-    <a href="{{ url_for('invoicing') }}" style="font-weight:bold; font-size:16px; color:#00324e;">Go to Invoicing Page</a>
-</div>
-
+  <div style="text-align:center; margin: 20px;">
+    <a href="{{ url_for('invoices') }}" style="font-weight:bold; font-size:16px; color:#00324e;">Go to Invoicing Page</a>
+  </div>
 
 </body>
 </html>

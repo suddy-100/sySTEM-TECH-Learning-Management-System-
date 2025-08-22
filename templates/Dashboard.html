@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <title>Dashboard</title>
@@ -7,7 +7,6 @@
             margin: 0;
             font-family: Calibri, sans-serif;
         }
-
         .header {
             background-color: white;
             display: flex;
@@ -16,26 +15,21 @@
             padding: 10px 30px;
             border-bottom: 1px solid #ccc;
         }
-
         .header .top-logo {
             width: 80px;
             height: auto;
         }
-
         .header .header-text {
             text-align: center;
             flex: 1;
         }
-
         .header .header-text h1 {
             margin: 0;
         }
-
         .container {
             display: flex;
             height: calc(100vh - 100px);
         }
-
         .sidebar {
             width: 200px;
             background-color: white;
@@ -45,7 +39,6 @@
             padding-top: 10px;
             border-right: 1px solid #ccc;
         }
-
         .nav-item {
             display: flex;
             align-items: center;
@@ -57,25 +50,22 @@
             padding-left: 30px;
             font-size: 16px;
         }
-
         .main {
             flex: 1;
             background-color: #FFEB3B;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: left;
+            align-items: left;
             padding: 20px;
             box-sizing: border-box;
         }
-
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.5fr 1.5fr;
             gap: 40px 60px;
-            width: 100%;
-            max-width: 1100px;
+            width: 200%;
+            max-width: 900px;
         }
-
         .card {
             padding: 20px;
             border-radius: 10px;
@@ -83,33 +73,26 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             background-color: white;
         }
-
         .homework {
             background-color: #00BCD4;
         }
-
         .attendance {
             background-color: #FFA726;
         }
-
         .registrations {
             background-color: #4CAF50;
         }
-
         .dropouts {
             background-color: darkblue;
         }
-
         .card h3 {
             margin-top: 0;
         }
-
         label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
         }
-
         input[type="text"] {
             width: 50%;
             padding: 8px;
@@ -124,7 +107,13 @@
         <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo" style="width:150px; height:auto;">
         <div class="header-text">
             <h1>Dashboard</h1>
-            <p><strong><a href="/about" style="text-decoration:none; color:black;">sySTEM@TECH Learning Management System</a></strong></p>
+            <p>
+                <strong>
+                    <a id="proceedLink" href="{{ url_for('weekly_schedule') }}" style="text-decoration:none; color:black;">
+                        sySTEM@TECH Learning Management System
+                    </a>
+                </strong>
+            </p>
         </div>
         <img src="{{ url_for('static', filename='system_logo.jpg') }}" alt="Logo" style="width:150px; height:auto;">
     </div>
@@ -139,40 +128,66 @@
         </div>
 
         <div class="main">
-            <div class="grid">
-                <div class="card homework">
-                    <h3>Homework</h3>
-                    <label>Current assigned homework:</label>
-                    <input type="text">
-                    <label>Current submissions:</label>
-                    <input type="text">
-                </div>
+            <!-- START FORM (wrap entire grid) -->
+            <form method="POST" action="{{ url_for('dashboard') }}">
+                <div class="grid">
+                    <div class="card homework">
+                        <h3>Homework</h3>
+                        <label>Current assigned homework:</label>
+                        <input type="text" name="homework_assigned">
+                        <label>Current submissions:</label>
+                        <input type="text" name="homework_submitted">
+                    </div>
 
-                <div class="card attendance">
-                    <h3>Attendance</h3>
-                    <label>Number of students:</label>
-                    <input type="text">
-                    <label>Tutor:</label>
-                    <input type="text">
-                </div>
+                    <div class="card attendance">
+                        <h3>Attendance</h3>
+                        <label>Number of students:</label>
+                        <input type="text" name="attendance_students">
+                        <label>Tutor:</label>
+                        <input type="text" name="attendance_tutor">
+                    </div>
 
-                <div class="card registrations">
-                    <h3>Current registrations</h3>
-                    <label>Tutors:</label>
-                    <input type="text">
-                    <label>Students:</label>
-                    <input type="text">
-                </div>
+                    <div class="card registrations">
+                        <h3>Current registrations</h3>
+                        <label>Tutors:</label>
+                        <input type="text" name="registered_tutors">
+                        <label>Students:</label>
+                        <input type="text" name="registered_students">
+                    </div>
 
-                <div class="card dropouts">
-                    <h3>Dropouts</h3>
-                    <label>Tutor dropouts in the last month:</label>
-                    <input type="text">
-                    <label>Student dropouts in the last month:</label>
-                    <input type="text">
+                    <div class="card dropouts">
+                        <h3>Dropouts</h3>
+                        <label>Tutor dropouts in the last month:</label>
+                        <input type="text" name="dropout_tutors">
+                        <label>Student dropouts in the last month:</label>
+                        <input type="text" name="dropout_students">
+                    </div>
                 </div>
-            </div>
+                <!-- hidden submit button -->
+                <button type="submit" id="hiddenSubmit" style="display:none;"></button>
+            </form>
+            <!-- END FORM -->
         </div>
     </div>
+
+    <script>
+        document.getElementById("proceedLink").addEventListener("click", function(event) {
+            const inputs = document.querySelectorAll("input[type='text']");
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (input.value.trim() === "") {
+                    allFilled = false;
+                }
+            });
+            if (!allFilled) {
+                event.preventDefault();
+                alert("Please fill in all fields before proceeding.");
+            } else {
+                // Submit form instead of navigating directly
+                event.preventDefault();
+                document.getElementById("hiddenSubmit").click();
+            }
+        });
+    </script>
 </body>
 </html>

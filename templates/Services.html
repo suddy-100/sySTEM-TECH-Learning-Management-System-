@@ -76,6 +76,13 @@
       font-weight: bold;
     }
 
+    .card .description {
+      padding: 8px 10px;
+      font-size: 14px;
+      text-align: left;
+      color: #333;
+    }
+
     .footer {
       margin: 30px 0;
       font-weight: bold;
@@ -97,33 +104,36 @@
   <div class="grid">
     <div class="card">
       <div class="number">1</div>
-      <img src="stem.jpg" alt="STEM Subjects">
+      <img src="{{ url_for('static', filename='STEM.jfif') }}" alt="Logo">
       <div class="label">STEM SUBJECTS</div>
+      <div class="description">Hands-on learning in science, technology, engineering, and math to develop critical thinking and problem-solving skills.</div>
     </div>
 
     <div class="card">
       <div class="number">2</div>
-      <img src="robotics.jpg" alt="Robotics">
+      <img src="{{ url_for('static', filename='Robotics.jpg') }}" alt="Logo">
       <div class="label">ROBOTICS AND PROGRAMMING</div>
+      <div class="description">Learn coding and robotics fundamentals through practical projects and interactive lessons.</div>
     </div>
 
     <div class="card">
       <div class="number">3</div>
-      <img src="calligraphy.jpg" alt="Calligraphy">
+      <img src="{{ url_for('static', filename='calligraphy.jfif') }}" alt="Logo">
       <div class="label">CALLIGRAPHY</div>
+      <div class="description">Develop artistic handwriting skills and create elegant designs using modern and traditional techniques.</div>
     </div>
 
     <div class="card">
       <div class="number">4</div>
-      <img src="vce.jpg" alt="VCE/NAPLAN">
+      <img src="{{ url_for('static', filename='vce.webp') }}" alt="Logo">
       <div class="label">VCE/NAPLAN/SCHOLARSHIP</div>
+      <div class="description">Focused tutoring to help students prepare for exams, assessments, and scholarship opportunities effectively.</div>
     </div>
   </div>
 
  <div class="footer">
   <a href="{{ url_for('our_locations') }}" style="color:white; text-decoration:none;">Visit Our Locations</a>
 </div>
-
 
 </body>
 </html>

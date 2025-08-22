@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database View</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        h2 { margin-top: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 30px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #2d6a4f; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Database Overview</h1>
+
+    <!-- Users Table -->
+    <h2>Users</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Registrations Table -->
+    <h2>Registrations</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>DOB Day</th>
+            <th>DOB Month</th>
+            <th>DOB Year</th>
+            <th>Gender</th>
+            <th>Role</th>
+            <th>Subjects</th>
+            <th>Locations</th>
+        </tr>
+        {% for reg in registrations %}
+        <tr>
+            <td>{{ reg[0] }}</td>
+            <td>{{ reg[1] }}</td>
+            <td>{{ reg[2] }}</td>
+            <td>{{ reg[3] }}</td>
+            <td>{{ reg[4] }}</td>
+            <td>{{ reg[5] }}</td>
+            <td>{{ reg[6] }}</td>
+            <td>{{ reg[7] }}</td>
+            <td>{{ reg[8] }}</td>
+            <td>{{ reg[9] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Dashboard Table -->
+    <h2>Dashboard</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Homework Assigned</th>
+            <th>Homework Submitted</th>
+            <th>Attendance Students</th>
+            <th>Attendance Tutor</th>
+            <th>Registered Tutors</th>
+            <th>Registered Students</th>
+            <th>Dropout Tutors</th>
+            <th>Dropout Students</th>
+        </tr>
+        {% for dash in dashboard %}
+        <tr>
+            <td>{{ dash[0] }}</td>
+            <td>{{ dash[1] }}</td>
+            <td>{{ dash[2] }}</td>
+            <td>{{ dash[3] }}</td>
+            <td>{{ dash[4] }}</td>
+            <td>{{ dash[5] }}</td>
+            <td>{{ dash[6] }}</td>
+            <td>{{ dash[7] }}</td>
+            <td>{{ dash[8] }}</td>
+            <td>{{ dash[9] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Weekly Schedule Table -->
+    <h2>Weekly Schedule</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+        {% for sched in weekly_schedule %}
+        <tr>
+            <td>{{ sched[0] }}</td>
+            <td>{{ sched[1] }}</td>
+            <td>{{ sched[2] }}</td>
+            <td>{{ sched[3] }}</td>
+            <td>{{ sched[4] }}</td>
+            <td>{{ sched[5] }}</td>
+            <td>{{ sched[6] }}</td>
+            <td>{{ sched[7] }}</td>
+            <td>{{ sched[8] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Invoices Table -->
+    <h2>Invoices</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Invoice No</th>
+            <th>Due Date</th>
+            <th>Client Name</th>
+            <th>Client Email</th>
+            <th>Company Name</th>
+            <th>Company Address</th>
+            <th>Items</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
+            <th>Total</th>
+            <th>Payment Method</th>
+            <th>Invoice Date</th>
+            <th>Username</th>
+        </tr>
+        {% for inv in invoices %}
+        <tr>
+            <td>{{ inv[0] }}</td>
+            <td>{{ inv[1] }}</td>
+            <td>{{ inv[2] }}</td>
+            <td>{{ inv[3] }}</td>
+            <td>{{ inv[4] }}</td>
+            <td>{{ inv[5] }}</td>
+            <td>{{ inv[6] }}</td>
+            <td>{{ inv[7] }}</td>
+            <td>{{ inv[8] }}</td>
+            <td>{{ inv[9] }}</td>
+            <td>{{ inv[10] }}</td>
+            <td>{{ inv[11] }}</td>
+            <td>{{ inv[12] }}</td>
+            <td>{{ inv[13] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
